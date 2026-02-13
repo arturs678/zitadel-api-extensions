@@ -22,7 +22,6 @@ data class ZitadelConfigurationProperties(
             require(methods.isNotEmpty()) {
                 "Authentication method must be provided"
             }
-
             require(methods.size == 1) {
                 "Only one authentication method is allowed"
             }

@@ -19,11 +19,8 @@ data class ZitadelConfigurationProperties(
         init {
             val methods = listOfNotNull(accessToken, clientCredentials, privateKey)
 
-            require(methods.isNotEmpty()) {
-                "Authentication method must be provided"
-            }
             require(methods.size == 1) {
-                "Only one authentication method is allowed"
+                "Exactly one authentication method is allowed, but got ${methods.size}."
             }
 
             method = methods.single()

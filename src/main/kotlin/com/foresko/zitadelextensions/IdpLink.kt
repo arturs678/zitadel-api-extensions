@@ -10,10 +10,10 @@ import java.util.UUID
 class IdpLink(
     @Id
     val id: UUID = UuidCreator.getTimeOrderedEpoch(),
+    val userId: String,
     val idpId: String,
     val idpUserId: String,
     var idpUserName: String,
-    val internalUserId: String,
     @Version
     var version: Int,
 )

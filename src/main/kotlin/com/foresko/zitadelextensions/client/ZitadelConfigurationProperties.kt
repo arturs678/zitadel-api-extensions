@@ -17,23 +17,17 @@ data class ZitadelConfigurationProperties(
         val method: Method
 
         init {
-            var nonNullCount = 0
+            val methods = listOfNotNull(accessToken, clientCredentials, privateKey)
 
-            if (accessToken != null) ++nonNullCount
-            if (clientCredentials != null) ++nonNullCount
-            if (privateKey != null) ++nonNullCount
-
-            require(nonNullCount != 0) {
+            require(methods.isNotEmpty()) {
                 "Authentication method must be provided"
             }
 
-            require(nonNullCount == 1) {
+            require(methods.size == 1) {
                 "Only one authentication method is allowed"
             }
 
-            method = checkNotNull(accessToken ?: clientCredentials ?: privateKey) {
-                "authentication method can't be null"
-            }
+            method = methods.single()
         }
 
         sealed interface Method {
